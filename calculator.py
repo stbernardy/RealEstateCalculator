@@ -4,6 +4,13 @@ Calculator by Cody Bernardy www.bernardy.biz
 import math 
 from sys import exit 
 
+def getinput(questions):
+	out=[]
+	for quest in questions:
+		print quest
+		out.append(int(raw_input("> ")))
+	return out
+
 def loan():
 	print("What was the loan amount?")
 	loanAmount = raw_input("> ")
@@ -15,35 +22,24 @@ def loan():
 	income()
 
 def income():
-	print("Gross monthly income")
-	grossIncome = raw_input("> ")
-	print("What Landlord expenses do you have monthly?")
-	print("1. Electricity")
-	electricity = raw_input("> ")
-	print("2. Water")
-	water = raw_input("> ")
-	print("3. PMI")
-	pmi = raw_input("> ")
-	print("4. Garbage")
-	garbage = raw_input("> ")
-	print("5. HOA")
-	hoa = raw_input("> ")
-	print("6. Insurance")
-	insurance = raw_input("> ")
-	print("7. Taxes")
-	taxes = raw_input("> ")
-	print("8. Vacancy")
-	vacancy = raw_input("> ")
-	print("9. Repairs")
-	repairs = raw_input("> ")
-	print("10. Capital Expenditures")
-	CAPEX = raw_input("> ")
-	print("11. Property Management")
-	propertyManagement = raw_input("> ")
+	incomequest=[
+	"Gross monthly income",
+	"What Landlord expenses do you have monthly?\n1. electricity",
+	"2. water",
+	"3. PMI",
+	"4. Garbage",
+	"5. HOA",
+	"6. Insurance",
+	"7. Taxes",
+	"8. Vacancy",
+	"9. Repairs",
+	"10. Capital Expenditures",
+	"11. Property Management",
+	]
 
-	netIncome = grossIncome - electricity - water - pmi - garbage - hoa - insurance - taxes - vacancy - repairs - CAPEX - propertyManagemen
+	netIncome = getinput(incomequest)
 
-	print("After expenses, your monthly income is:${0}").format(netIncome)
+	print("After expenses, your monthly income is:${0}").format(netIncome[0]-sum(netIncome[1:]))
 			
 def rentalProperty():
 	print("Report Title")
@@ -65,10 +61,10 @@ def rentalProperty():
 	print("Was this a cash purchase?")
 	cashPurchase = raw_input("> ")
 
-	if cashPurchase == "Yes" or "yes" or "YES":
+	if cashPurchase.lower() == "yes":
 		income()
 
-	elif cashPurchase == "No" or "no" or "NO":
+	elif cashPurchase.lower() == "no":
 		loan()
 
 def openingScreen():
