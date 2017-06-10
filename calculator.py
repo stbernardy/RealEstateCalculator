@@ -11,21 +11,22 @@ def getinput(questions):
 		out.append(int(raw_input("> ")))
 	return out
 
-def loan():
-	print("What was the loan amount?")
-	loanAmount = raw_input("> ")
-	print("What is the interest rate in (whole number amount)?")
-	interestRate = raw_input(" ")
-	print("Points charged by lender(if you don't know what points are, check out our defintions tab)")
-	pointsCharged = raw_input("> ")
-	print("Interest only loan? (See definitions)")
-	income()
+	if interestOnly.lower() == "yes":
+		income()
+	elif interestOnly == "no" or "No":
+		pass	
+	loanQuestions=[
+	"What was the loan amount?",
+	"What is the interest rate? (In a whole number)",
+	"Points charged by the lender(if you do not know what points are, check out our defintions tab)",
+	]
+
 
 def income():
 	incomequest=[
 	"Gross monthly income",
-	"What Landlord expenses do you have monthly?\n1. electricity",
-	"2. water",
+	"What Landlord expenses do you have monthly?\n1. Electricity",
+	"2. Water",
 	"3. PMI",
 	"4. Garbage",
 	"5. HOA",
@@ -42,30 +43,15 @@ def income():
 	print("After expenses, your monthly income is:${0}").format(netIncome[0]-sum(netIncome[1:]))
 			
 def rentalProperty():
-	print("Report Title")
-	reportTitle = raw_input("> ")
-	print("Property Address:")
-	propertyAddress = raw_input("> ")
-	print("Annaul Property Taxes")
-	annualPropertyTax = raw_input("> ")
-	print("MLS Number")
-	MLS = raw_input("> ")
-	print("Original purchase price")
-	purchasePrice = raw_input("> ")
-	print("After Repair Value")
-	afterRepair = raw_input("> ")
-	print("Estimated Closing Costs")
-	closingCosts = raw_input("> ")
-	print("Repair Costs")
-	repairCosts = raw_input("> ")
-	print("Was this a cash purchase?")
-	cashPurchase = raw_input("> ")
-
-	if cashPurchase.lower() == "yes":
-		income()
-
-	elif cashPurchase.lower() == "no":
-		loan()
+	rentalQuest=[
+	"What is theProperty Address",
+	"Report Name",
+	"What is the Annual Property Tax?",
+	"What is the MLS number?",
+	"What was the Original Purchasing Price?",
+	"What is the After Repair Value?",
+	"What is the Estimated Closing Costs?",
+	]
 
 def openingScreen():
 	print("Welcome to the Real Estate Calculator")
@@ -85,4 +71,14 @@ def openingScreen():
 	else:
 		exit()
 
-print openingScreen()
+openingScreen()
+
+print("Was this a cash purchase?")
+cashPurchase = raw_input("> ")
+
+if cashPurchase.lower() == "yes":
+	income()
+
+elif cashPurchase.lower() == "no":
+	loan()
+
